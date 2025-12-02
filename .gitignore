@@ -2,14 +2,14 @@
 .DS_Store
 Thumbs.db
 
-# Build artifacts
-*.exe
-*.out
-*.o
-*.obj
-*.a
-*.so
-*.dll
+# Build artifacts anywhere
+**/*.exe
+**/*.out
+**/*.o
+**/*.obj
+**/*.a
+**/*.so
+**/*.dll
 
 # IDE / Editor files
 .vscode/
@@ -17,6 +17,14 @@ Thumbs.db
 *.swp
 *.swo
 
-# Temporary files
-*.log
-*.tmp
+# Temporary / log files
+**/*.log
+**/*.tmp
+
+# Ignore all executables named 'solution' in any folder
+**/solution
+
+# Optionally ignore any other executables (common extensions)
+**/*.exe
+**/*.out
+
