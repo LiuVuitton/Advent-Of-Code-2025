@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <utility>
 
 int find_combination(const std::vector<std::pair<char, int>>& instructions) {
     int count = 0;
