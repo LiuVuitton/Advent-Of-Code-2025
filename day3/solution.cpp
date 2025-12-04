@@ -42,6 +42,8 @@ int main() {
             banks.push_back(line);
     }
 
+    f.close();
+
     int result = total_output_joltage(banks);
     std::cout << result << "\n";
 

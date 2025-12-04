@@ -39,6 +39,8 @@ int main() {
         int dist = stoi(line.substr(1));
         instructions.push_back({dir, dist});
     }
+    
+    f.close();
 
     int pswd = find_combination(instructions);
     std::cout << "The correct combination is " << pswd << "\n";
