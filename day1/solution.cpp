@@ -3,21 +3,38 @@
 #include <vector>
 #include <utility>
 
+// Part 1
 int find_combination(const std::vector<std::pair<char, int>>& instructions) {
     int count = 0;
     int dial = 50;
     for (auto [dir, dist] : instructions) {
-        switch (dir) {
-            case 'R':
-                dial = (dial + dist) % 100;
-                break;
-            case 'L': 
-                dial = (dial - dist) % 100;
-                break;
-            default:
-                break;
+        if (dir == 'R') {
+            dial = ((dial + dist) % 100 + 100) % 100;
+        }
+        else if (dir == 'L') {
+            dial = ((dial - dist) % 100 + 100) % 100;
         }
         if (dial == 0) ++count;
+    }
+    return count;
+}
+
+// Part 2
+int count_clicks(const std::vector<std::pair<char, int>>& instructions) {
+    int count = 0;
+    int dial = 50;
+    int sign = 1;
+    for (auto [dir, dist] : instructions) {
+        if (dir == 'R') {
+            sign = 1;
+        }
+        else if (dir == 'L') {
+            sign = -1;
+        }
+        for (int i = 0; i < dist; ++i) {
+            dial = ((dial + sign) % 100 + 100) % 100;
+            if (dial == 0) ++count;
+        }
     }
     return count;
 }
@@ -42,8 +59,15 @@ int main() {
     
     f.close();
 
+    std::cout << "Part 1.\n";
     int pswd = find_combination(instructions);
     std::cout << "The correct combination is " << pswd << "\n";
+
+    std::cout << "Part 2\n";
+    int correct_pswd = count_clicks(instructions);
+    std::cout  << "The number of clicks is " << correct_pswd << "\n";
+
+    std::cout << (-5 % 100) << "\n";
 
     return 0;
 }
