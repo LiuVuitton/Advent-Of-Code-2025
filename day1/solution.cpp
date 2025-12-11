@@ -4,40 +4,9 @@
 #include <utility>
 
 // Part 1
-int find_combination(const std::vector<std::pair<char, int>>& instructions) {
-    int count = 0;
-    int dial = 50;
-    for (auto [dir, dist] : instructions) {
-        if (dir == 'R') {
-            dial = ((dial + dist) % 100 + 100) % 100;
-        }
-        else if (dir == 'L') {
-            dial = ((dial - dist) % 100 + 100) % 100;
-        }
-        if (dial == 0) ++count;
-    }
-    return count;
-}
-
+int find_combination(const std::vector<std::pair<char, int>>& instructions);
 // Part 2
-int count_clicks(const std::vector<std::pair<char, int>>& instructions) {
-    int count = 0;
-    int dial = 50;
-    int sign = 1;
-    for (auto [dir, dist] : instructions) {
-        if (dir == 'R') {
-            sign = 1;
-        }
-        else if (dir == 'L') {
-            sign = -1;
-        }
-        for (int i = 0; i < dist; ++i) {
-            dial = ((dial + sign) % 100 + 100) % 100;
-            if (dial == 0) ++count;
-        }
-    }
-    return count;
-}
+int count_clicks(const std::vector<std::pair<char, int>>& instructions);
 
 int main() {
     std::ifstream f("input.txt");   // open local file
@@ -70,4 +39,38 @@ int main() {
     std::cout << (-5 % 100) << "\n";
 
     return 0;
+}
+
+int find_combination(const std::vector<std::pair<char, int>>& instructions) {
+    int count = 0;
+    int dial = 50;
+    for (auto [dir, dist] : instructions) {
+        if (dir == 'R') {
+            dial = ((dial + dist) % 100 + 100) % 100;
+        }
+        else if (dir == 'L') {
+            dial = ((dial - dist) % 100 + 100) % 100;
+        }
+        if (dial == 0) ++count;
+    }
+    return count;
+}
+
+int count_clicks(const std::vector<std::pair<char, int>>& instructions) {
+    int count = 0;
+    int dial = 50;
+    int sign = 1;
+    for (auto [dir, dist] : instructions) {
+        if (dir == 'R') {
+            sign = 1;
+        }
+        else if (dir == 'L') {
+            sign = -1;
+        }
+        for (int i = 0; i < dist; ++i) {
+            dial = ((dial + sign) % 100 + 100) % 100;
+            if (dial == 0) ++count;
+        }
+    }
+    return count;
 }
